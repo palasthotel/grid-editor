@@ -42,9 +42,9 @@ export const actionSetBoxMetaTypes = (types) => ({
 	type: BOX__META_TYPES,
 	payload: { types },
 });
-export const actionSetBoxTypes = (boxes) => ({
+export const actionSetBoxTypes = (meta_type, boxes) => ({
 	type: BOX__TYPES,
-	payload: {boxes},
+	payload: { meta_type, boxes },
 });
 
 export const actionGetStyles = () => dispatch => {
@@ -106,6 +106,6 @@ export const actionGetBoxTypes = args => dispatch => {
 	dispatch(actionSetBackgroundIsLoading(true));
 	fetchBoxTypes(args).then(types=>{
 		dispatch(actionSetBackgroundIsLoading(false));
-		dispatch(actionSetBoxTypes(types));
+		dispatch(actionSetBoxTypes(args.box_meta_type, types));
 	});
 }

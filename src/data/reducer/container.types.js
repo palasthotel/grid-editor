@@ -5,10 +5,10 @@ import {
 export default function reduceContainerTypes(state = [], action){
 	switch(action.type){
 		case CONTAINER__TYPES:
-			return {
+			return [
 				...state,
-				...action.payload.container_types,
-			};
+				...action.payload.types,
+			];
 	}
 	return state;
 }

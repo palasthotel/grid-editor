@@ -16,8 +16,9 @@ export default function createGridStore(state = {
 
 	// tools
 	container_types: [],
-	box_types: [],
-	
+	box_meta_types: [],
+	box_types: {},
+
 	// ui states
 	ui: {},
 

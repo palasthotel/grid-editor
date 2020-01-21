@@ -310,7 +310,7 @@ module.exports = {
 							"layout":null,
 							"language":null,
 							"style_label":null,
-							"id":6,
+							"id":21,
 							"html":"<div class=\"grid-box-editmode\">\n\t<p>HTML TEST<\/p>\n<\/div>\n",
 							"type":"wp_html",
 							"content":{
@@ -338,7 +338,7 @@ module.exports = {
 							"layout":null,
 							"language":null,
 							"style_label":null,
-							"id":6,
+							"id":22,
 							"html":"<div class=\"grid-box-editmode\">\n\t<p><img src='http://placeholder.palasthotel.de/make/800x200.png'<\/p>\n<\/div>\n",
 							"type":"wp_html",
 							"content":{
@@ -366,7 +366,7 @@ module.exports = {
 							"layout":null,
 							"language":null,
 							"style_label":null,
-							"id":6,
+							"id":7,
 							"html":"<div class=\"grid-box-editmode\">\n\t<p>HTML TEST<\/p>\n<\/div>\n",
 							"type":"wp_html",
 							"content":{

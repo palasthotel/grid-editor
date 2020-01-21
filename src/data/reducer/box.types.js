@@ -3,23 +3,27 @@ import {
 	BOX__TYPES,
 } from '../actions/types';
 
-export default function reduceBoxTypes(state = [], action){
+
+export const reduceBoxMetaTypes = (state = [], action) =>{
 	switch (action.type) {
 		case BOX__META_TYPES:
 			return [
 				...action.payload.types
 			];
-		case BOX__TYPES:
-			const types = [];
-			for(const i in state){
-				const box_type = {...state[i]};
-				if(box_type.type === action.payload.box_meta_type){
-					box_type.boxes = action.payload.boxes;
-				}
-				types.push(box_type)
-			}
+		default:
+			return state;
+	}
+}
 
-			return types
+
+export const reduceBoxTypes = (state = [], action) =>{
+	switch (action.type) {
+		case BOX__TYPES:
+			console.log("reduce BOX TYPES", action);
+			return {
+				...state,
+				[action.payload.meta_type]: action.payload.boxes,
+			}
 		default:
 			return state;
 	}

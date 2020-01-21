@@ -1,10 +1,11 @@
 import React from 'react';
 import {useSelector} from 'react-redux';
 import {makeStyles} from '@material-ui/styles';
+import { colorDraft, colorPublished } from '../constants/colors';
 
 const useStyles = makeStyles({
     draftStateBar:props => ({
-        backgroundColor: (!props.isDraft)? "green": "orange",
+        backgroundColor: (!props.isDraft)? colorPublished: colorDraft,
         height: 5,
     }),
 })
