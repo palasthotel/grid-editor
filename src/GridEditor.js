@@ -5,8 +5,6 @@ import Store from './data/store'
 import { initAjax } from './data/connection/ajax';
 import Root from './components/Grid/Root';
 
-import './style/GridEditor';
-
 export default function GridEditor({
     elementId,
     ajaxUrl

@@ -6,7 +6,7 @@ import RevertIcon from '@material-ui/icons/RefreshOutlined';
 import RevisionsIcon from '@material-ui/icons/HistoryOutlined';
 import {
     colorDraft, colorDarkSurface, colorOnDarkSurface, colorOnLightSurface
-} from '../constants/colors';
+} from '../../style/colors';
 
 const useStyles = makeStyles({
     actionPanel:{
@@ -136,7 +136,7 @@ export const ActionElement = ({
 
 export default function ActionsPanel(props){
     const classes = useStyles();
-    return <div className={classes.actionPanel}>
+    return <div className={props.className+" "+classes.actionPanel}>
             {props.children}
     </div>
 }
