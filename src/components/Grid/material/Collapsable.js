@@ -15,7 +15,7 @@ export default function Collapsable({label, children, expanded=false}){
         >
             {label}
         </ExpansionPanelSummary>
-        <ExpansionPanelDetails>
+        <ExpansionPanelDetails style={{display: "block"}}>
             {children}
         </ExpansionPanelDetails>
     </ExpansionPanel>

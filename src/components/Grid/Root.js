@@ -1,9 +1,8 @@
 import React from 'react';
-import { DragDropContext, Droppable } from 'react-beautiful-dnd';
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import {makeStyles} from '@material-ui/styles';
-import { useGrid } from '../../hook/useGrid';
 import Toolbars from './Toolbars';
-import Grid from './Grid';
+import Grid from './content/Grid';
 
 const useStyles = makeStyles({
     wrapper:{
@@ -17,7 +16,8 @@ const useStyles = makeStyles({
         margin: `0 ${dimensions.materialsPanelWidth}px 0 ${dimensions.actionsPanelWidth}px`,
         padding: "10px 10px 60px 5px",
     }),
-})
+});
+
 
 export default function Root(){
 
@@ -27,11 +27,14 @@ export default function Root(){
     };
 
     const classes = useStyles(dimensions);
-    const grid = useGrid();
+
+
 
     return (
         <div className={classes.wrapper}>
-            <DragDropContext>
+            <DragDropContext onDragEnd={(props)=>{
+                console.log(props);
+            }}>
                 <Toolbars
                     {...dimensions}
                 />

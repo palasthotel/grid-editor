@@ -1,4 +1,3 @@
-'use strict';
 
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
@@ -20,7 +19,9 @@ export default function createGridStore(state = {
 	box_types: {},
 
 	// ui states
-	ui: {},
+	ui: {
+		isAltKeyPressed: false,
+	},
 
 }){
 

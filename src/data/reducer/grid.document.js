@@ -1,7 +1,7 @@
 
 import {
 	findSlot,
-} from '../../helper/store-iterator';
+} from '../../utils/store-iterator';
 
 import { GRID__STATE, GRID__IS_DRAFT, CONTAINER__ADD, CONTAINER__DELETE, CONTAINER__MOVE, CONTAINER__UPDATE, BOX__ADD, BOX__REMOVE, BOX__MOVE } from '../actions/types';
 

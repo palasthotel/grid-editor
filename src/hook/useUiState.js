@@ -11,3 +11,5 @@ const useIsLoading = ()=>{
         isLoading
     ];
 };
+
+export const useIsAltKeyPressed = ()=> useSelector(({ui})=> ui.isAltKeyPressed);

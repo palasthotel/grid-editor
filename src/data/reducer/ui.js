@@ -1,6 +1,6 @@
 
 import {
-	GRID_UI_STATE,
+	UI__STATE_SET,
 	GRID_LOADING,
 	GRID_BOX_EDIT,
 	GRID_CONTAINER_EDIT,
@@ -10,8 +10,7 @@ import {
 
 export default function reduceUI(state = [], action){
 	switch (action.type) {
-
-		case GRID_UI_STATE:
+		case UI__STATE_SET:
 			const new_state = {
 				...state,
 			};
@@ -23,7 +22,6 @@ export default function reduceUI(state = [], action){
 				...state,
 				is_loading: action.payload.is_loading,
 			};
-			break;
 		case GRID_CONTAINER_EDIT:
 			return {
 				...state,

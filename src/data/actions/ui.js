@@ -18,3 +18,6 @@ export const actionSetBackgroundIsLoading =
 
 export const actionSetGridIsLoading =
 	(isLoading) => actionUiStateChange("gridIsLoading", isLoading);
+
+export const actionSetIsAltKeyPressed =
+	(isAltPressed) => actionUiStateChange("isAltKeyPressed", isAltPressed);

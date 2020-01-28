@@ -24,8 +24,8 @@ const useStyles = makeStyles({
         borderBottom: "1px solid "+colorBorder,
     },
     boxTypes:{
-        borderTop: "1px solid "+colorBorder,
-        backgroundColor: colorBlueGrey[100],
+        // borderTop: "1px solid "+colorBorder,
+        // backgroundColor: colorBlueGrey[100],
         margin: 0,
         padding: 0,
         minHeight: 10,
@@ -45,8 +45,9 @@ const useStyles = makeStyles({
     boxPreview:{
         backgroundColor: colorLightSurface,
         border: "1px solid "+colorBlueGrey[300],
+        borderRadius: 2,
     },
-    boxDragger:{
+    boxDragHelper:{
         position: "absolute",
         height: 5,
         width: 5,
@@ -63,7 +64,7 @@ export const BoxType = ({type})=>{
     const classes = useStyles();
     return <div className={classes.boxType}>
         <div className={classes.boxPreview}>
-            <span className={classes.boxDragger}>
+            <span className={classes.boxDragHelper}>
                 <MoreVertRoundedIcon />
             </span>
             <div className={classes.boxName}>{type}</div>
@@ -76,11 +77,11 @@ export const BoxMetaType = ({type, title})=>{
     const classes = useStyles({isOpen});
     const boxTypes = useSelector(({box_types}) => box_types[type] || [] );
 
-    // return <Collapsable label={title}>
-    //     <Box>
-    //         {boxTypes.map(box=> <BoxType key={box.type} {...box} />)}
-    //     </Box>
-    // </Collapsable>
+    return <Collapsable label={title}>
+        <Box>
+            {boxTypes.map(box=> <BoxType key={box.type} {...box} />)}
+        </Box>
+    </Collapsable>
 
     return <>
         <div

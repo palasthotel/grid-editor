@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {makeStyles} from '@material-ui/styles';
 import ActionsPanel, {
     ActionButtonPublish,
@@ -7,13 +7,13 @@ import ActionsPanel, {
     ActionButtonRevisions
 } from './ActionPanel';
 import { BoxMetaType } from './material/BoxMetaType';
-import { useBoxMetaTypes, useContainerTypes } from '../../hook/useMaterial';
+import { useBoxMetaTypes, useContentContainerTypes } from '../../hook/useMaterial';
 import DraftStateHeader from './DraftStateHeader';
-import { colorLightSurface, colorBorder } from '../../style/colors';
 import {useWindowInnerHeight} from '../../hook/useWindow';
-import { ExpansionPanel, ExpansionPanelSummary, ExpansionPanelDetails } from '@material-ui/core';
-import ArrowDropDownRoundedIcon from '@material-ui/icons/ArrowDropDownRounded';
 import Collapsable from './material/Collapsable';
+import ContainerType from './material/ContainerType';
+import { Droppable } from 'react-beautiful-dnd';
+import { ContainerTypeDraggable } from './dnd/ContainerDnd';
 
 const useStyles = makeStyles({
     toolbar:{
@@ -29,7 +29,7 @@ const useStyles = makeStyles({
     materialsPanel:({materialsPanelWidth, windowInnerHeight})=>({
         position:"absolute",
         right: 0,
-        width: materialsPanelWidth,
+        width: materialsPanelWidth - 4,
         padding:4,
         paddingTop: 10,
         // backgroundColor: colorLightSurface,
@@ -49,9 +49,8 @@ export default function Toolbars({actionsPanelWidth, materialsPanelWidth}){
         materialsPanelWidth,
         windowInnerHeight,
     });
-    const containerTypes = useContainerTypes();
+    const containerTypes = useContentContainerTypes();
     const boxMetaTypes = useBoxMetaTypes();
-    const [isContainersExpended, setContainersExpended] = useState(true);
 
     return <div className={classes.toolbar}>
         <DraftStateHeader />
@@ -62,10 +61,36 @@ export default function Toolbars({actionsPanelWidth, materialsPanelWidth}){
                 <ActionButtonRevisions position={3} />
         </ActionsPanel>
         <div className={classes.materialsPanel}>
-            <Collapsable label="Containers">
-                {containerTypes.map(type=><p>{type.type}</p>)}
-            </Collapsable>
-            {boxMetaTypes.map((metaType)=> <BoxMetaType key={metaType.type} {...metaType} />)}
+            <div style={{marginBottom: 10}}>
+                <Collapsable label="Containers">
+                    <Droppable droppableId="content-container-types" isDropDisabled={true}>{(provided, snapshot)=>{
+                        return <div
+                            ref={provided.innerRef}
+                            {...provided.droppableProps}
+                        >
+                        {
+                            containerTypes
+                            .map((containerType, index)=>
+                                <ContainerTypeDraggable
+                                    key={containerType.type}
+                                    containerType={containerType.type}
+                                    containerIndex={index}
+                                >
+                                    <ContainerType {...containerType} />
+                                </ContainerTypeDraggable>
+                            )
+                        }
+                        </div>
+                    }}
+                    </Droppable>
+                </Collapsable>
+                <Collapsable label="Reusable Containers">
+                    <p>REUSE ME</p>
+                </Collapsable>
+            </div>
+            <div>
+                {boxMetaTypes.map((metaType)=> <BoxMetaType key={metaType.type} {...metaType} />)}
+            </div>
         </div>
     </div>
 }
