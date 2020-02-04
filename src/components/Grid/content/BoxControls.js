@@ -4,7 +4,7 @@ import { colorSurfaceEdit, colorEdit, colorDelete, colorSurfaceDelete } from '..
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import FileCopyOutlinedIcon from '@material-ui/icons/FileCopyOutlined';
 import DeleteOutlineOutlinedIcon from '@material-ui/icons/DeleteOutlineOutlined';
-import { useIsAltKeyPressed } from '../../../hook/useUiState';
+import { useIsAltKeyPressed } from '../../../hook/useUi';
 
 const useControlStyles = makeStyles({
     button:{

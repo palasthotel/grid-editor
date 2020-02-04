@@ -4,8 +4,17 @@ import PublishIcon from '@material-ui/icons/DoneAllOutlined';
 import PreviewIcon from '@material-ui/icons/VisibilityOutlined';
 import RevertIcon from '@material-ui/icons/RefreshOutlined';
 import RevisionsIcon from '@material-ui/icons/HistoryOutlined';
+import SaveOutlinedIcon from '@material-ui/icons/SaveOutlined';
+import CloseOutlinedIcon from '@material-ui/icons/CloseOutlined';
 import {
-    colorDraft, colorDarkSurface, colorOnDarkSurface, colorOnLightSurface
+    colorDraft,
+    colorDarkSurface,
+    colorOnDarkSurface,
+    colorOnLightSurface,
+    colorSave,
+    colorOnSave,
+    colorSurfaceCancel,
+    colorOnCancel
 } from '../../style/colors';
 
 const useStyles = makeStyles({
@@ -14,6 +23,7 @@ const useStyles = makeStyles({
     },
     actionElement: ({position, size = 45}) => ({
         position: "absolute",
+        zIndex: 100,
         top: position*size,
         transition: "all 137ms ease-in-out",
         cursor: "pointer",
@@ -61,6 +71,20 @@ const useStyles = makeStyles({
             backgroundColor: colorDraft,
         }
     },
+    actionButtonSave:{
+        color: colorOnSave,
+        backgroundColor: colorSave,
+        "&:hover":{
+            backgroundColor: colorSave,
+        }
+    },
+    actionButtonCancel:{
+        color: colorOnCancel,
+        backgroundColor: colorSurfaceCancel,
+        "&:hover":{
+            backgroundColor: colorSurfaceCancel,
+        }
+    }
 });
 
 export const ActionButtonPublish = (props)=>{
@@ -68,9 +92,9 @@ export const ActionButtonPublish = (props)=>{
     const handleOnClick = ()=>{
     }
     return <ActionElement
+        onClick={handleOnClick}
         {...props}
         className={actionButtonPublish}
-        onClick={handleOnClick}
         icon={<PublishIcon fontSize="small" />}
         >
             Publish
@@ -82,9 +106,9 @@ export const ActionButtonPreview = (props)=>{
     const handleOnClick = ()=>{
     }
     return <ActionElement
+        onClick={handleOnClick}
         {...props}
         className={actionButtonPreview}
-        onClick={handleOnClick}
         icon={<PreviewIcon fontSize="small" />}
         >
             Preview
@@ -96,9 +120,9 @@ export const ActionButtonRevert = (props)=>{
     const handleOnClick = ()=>{
     }
     return <ActionElement
+        onClick={handleOnClick}
         {...props}
         className={actionButtonRevert}
-        onClick={handleOnClick}
         icon={<RevertIcon fontSize="small" />}
         >
             Revert
@@ -110,14 +134,57 @@ export const ActionButtonRevisions = (props)=>{
     const handleOnClick = ()=>{
     }
     return <ActionElement
+        onClick={handleOnClick}
         {...props}
         className={actionButtonRevisions}
-        onClick={handleOnClick}
         icon={<RevisionsIcon fontSize="small" />}
         >
             Revisions
     </ActionElement>
 }
+
+export const ActionButtonSave = (props)=>{
+    const {actionButtonSave} = useStyles(props);
+    const handleOnClick = ()=>{
+    }
+    return <ActionElement
+        onClick={handleOnClick}
+        {...props}
+        className={actionButtonSave}
+        icon={<SaveOutlinedIcon fontSize="small" />}
+        >
+            Save
+    </ActionElement>
+}
+
+export const ActionButtonCancel = (props)=>{
+    const {actionButtonCancel} = useStyles(props);
+    const handleOnClick = ()=>{
+    }
+    return <ActionElement
+        onClick={handleOnClick}
+        {...props}
+        className={actionButtonCancel}
+        icon={<CloseOutlinedIcon fontSize="small" />}
+        >
+            Cancel
+    </ActionElement>
+}
+
+export const ActionButtonReuse = (props)=>{
+    const {actionButtonReuse} = useStyles(props);
+    const handleOnClick = ()=>{
+    }
+    return <ActionElement
+        onClick={handleOnClick}
+        {...props}
+        className={actionButtonReuse}
+        icon={<CloseOutlinedIcon fontSize="small" />}
+        >
+            Cancel
+    </ActionElement>
+}
+
 
 export const ActionElement = ({
     position, size,

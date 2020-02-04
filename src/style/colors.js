@@ -8,6 +8,8 @@ export const colorBlueGrey = blueGrey;
 
 export const colorDraft = orange;
 export const colorPublished = green;
+export const colorSave = green;
+export const colorOnSave = "white";
 export const colorDarkSurface = darkGrey
 export const colorOnDarkSurface = "white";
 export const colorLightSurface = "white";
@@ -20,3 +22,6 @@ export const colorSurfaceEdit = lightBlue[500];
 
 export const colorDelete = "white";
 export const colorSurfaceDelete = red[500];
+
+export const colorSurfaceCancel = red[500];
+export const colorOnCancel = "white";

@@ -4,26 +4,7 @@ import thunk from 'redux-thunk';
 
 import reducer from './reducer';
 
-export default function createGridStore(state = {
-	// base
-	styles: [],
-	permissions: [],
-
-	// document
-	grid: {},
-	revisions: [],
-
-	// tools
-	container_types: [],
-	box_meta_types: [],
-	box_types: {},
-
-	// ui states
-	ui: {
-		isAltKeyPressed: false,
-	},
-
-}){
+export default function createGridStore(state = {}){
 
 	let middleware = [];
 

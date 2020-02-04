@@ -8,7 +8,9 @@ import {
 	GRID_BOX_IN_PLACE_DIALOG,
 } from '../actions/types';
 
-export default function reduceUI(state = [], action){
+export default function reduceUI(state = {
+	isAltKeyPressed: false,
+}, action){
 	switch (action.type) {
 		case UI__STATE_SET:
 			const new_state = {

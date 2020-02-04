@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/styles';
 import { colorBoxControlsBg } from '../../../style/colors';
 import BoxControls from './BoxControls';
 import BoxContent from './BoxContent';
+import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles({
     box:{
@@ -36,8 +37,14 @@ const useStyles = makeStyles({
 
 const Box =(props) => {
     const classes = useStyles();
+    const history = useHistory();
+
+    const handleOnEdit = ()=>{
+        history.push("/box/edit/"+props.id);
+    }
+
     return <div className={classes.box}>
-        <BoxControls className={classes.controls} />
+        <BoxControls className={classes.controls} onEdit={handleOnEdit} />
         <BoxContent className={classes.content} {...props} />
     </div>;
 }

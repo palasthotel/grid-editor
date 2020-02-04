@@ -21,9 +21,15 @@ export const useGridSlot = (slotId) => {
 
 export const useGridBox = (boxId) =>{
     const containers = useGridContainerList();
+    console.log("containers", containers);
     for(const {slots} of containers){
+        console.log("slots", slots);
         for(const {boxes} of slots){
-            const found = boxes.find(({id})=>id === boxId);
+            console.log("boxes", boxes);
+            const found = boxes.find(({id})=>{
+                console.log(id, "vs", boxId);
+                return id === boxId;
+            });
             if(found) return found;
         }
     }

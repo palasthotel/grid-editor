@@ -1,8 +1,17 @@
 import React from 'react';
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link,
+    useParams
+} from "react-router-dom";
+import { DragDropContext} from 'react-beautiful-dnd';
 import {makeStyles} from '@material-ui/styles';
 import Toolbars from './Toolbars';
 import Grid from './content/Grid';
+import BoxEditor from '../Editor/BoxEditor';
+import BoxEditorRoute from '../Editor/BoxEditorRoute';
 
 const useStyles = makeStyles({
     wrapper:{
@@ -28,18 +37,25 @@ export default function Root(){
 
     const classes = useStyles(dimensions);
 
+    // TODO: http://maisano.github.io/react-router-transition/animated-route/code
 
-
-    return (
-        <div className={classes.wrapper}>
-            <DragDropContext onDragEnd={(props)=>{
-                console.log(props);
-            }}>
-                <Toolbars
-                    {...dimensions}
-                />
-                <Grid className={classes.gridContent} />
-            </DragDropContext>
-        </div>
-    )
+    return <div className={classes.wrapper}>
+        <Router basename={window.location.path}>
+            <Switch>
+                <Route path="/box/edit/:id">
+                    <BoxEditorRoute />
+                </Route>
+                <Route path="/">
+                    <DragDropContext onDragEnd={(props)=>{
+                        console.log(props);
+                    }}>
+                        <Toolbars
+                            {...dimensions}
+                        />
+                        <Grid className={classes.gridContent} />
+                    </DragDropContext>
+                </Route>
+            </Switch>
+        </Router>
+    </div>
 };

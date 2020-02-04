@@ -4,7 +4,7 @@
   "description": "This is the editor JavaScript library.",
   "main": "src/index.js",
   "scripts": {
-    "serve": "./node_modules/.bin/parcel serve demo/index.html -d dist/demo",
+    "serve": "./node_modules/.bin/parcel serve demo/index.html -d dist/demo --no-source-maps",
     "watch-script": "./node_modules/.bin/parcel watch src/index.js -d dist",
     "watch-style": "./node_modules/.bin/parcel watch src/style/*.scss -d dist",
     "build-scripts": "./node_modules/.bin/parcel build src/*.js -d dist",
@@ -28,21 +28,27 @@
     "dist/demo/*.css",
     "dist/demo/*.css.map"
   ],
+  "browserslist": [
+    "last 5 Chrome versions"
+  ],
   "devDependencies": {
     "parcel-bundler": "^1.12.4",
     "parcel-plugin-clean-easy": "^1.0.2",
     "sass": "^1.25.0"
   },
   "dependencies": {
-    "@material-ui/core": "^4.8.3",
-    "@material-ui/icons": "^4.5.1",
-    "@material-ui/styles": "^4.8.2",
-    "@types/react": "^16.9.18",
-    "axios": "^0.19.1",
+    "@ckeditor/ckeditor5-build-classic": "^16.0.0",
+    "@ckeditor/ckeditor5-react": "^2.1.0",
+    "@material-ui/core": "^4.9.1",
+    "@material-ui/icons": "^4.9.1",
+    "@material-ui/styles": "^4.9.0",
+    "@types/react": "^16.9.19",
+    "axios": "^0.19.2",
     "react": "^16.12.0",
     "react-beautiful-dnd": "^12.2.0",
     "react-dom": "^16.12.0",
     "react-redux": "^7.1.3",
+    "react-router-dom": "^5.1.2",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0"
   }
