@@ -7,7 +7,7 @@
     "serve": "./node_modules/.bin/parcel serve demo/index.html -d dist/demo --no-source-maps",
     "watch-script": "./node_modules/.bin/parcel watch src/index.js -d dist",
     "watch-style": "./node_modules/.bin/parcel watch src/style/*.scss -d dist",
-    "build-scripts": "./node_modules/.bin/parcel build src/*.js -d dist",
+    "build-scripts": "./node_modules/.bin/parcel build src/*.js -d dist --no-source-maps",
     "build-styles": "./node_modules/.bin/parcel build src/style/*.scss -d dist",
     "build-demo": "./node_modules/.bin/parcel build demo/index.html -d dist/demo",
     "build": "npm run build-scripts && npm run build-styles && npm run build-demo"

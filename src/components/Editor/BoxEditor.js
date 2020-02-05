@@ -1,6 +1,4 @@
-import React, { useState, useRef } from 'react';
-import CKEditor from '@ckeditor/ckeditor5-react';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import React, { useState, useCallback } from 'react';
 import { useGridBox } from '../../hook/useGrid';
 import { TextField } from '@material-ui/core';
 import { useIsLoading } from '../../hook/useUi';
@@ -8,6 +6,8 @@ import ActionsPanel, { ActionButtonSave, ActionButtonCancel } from '../Grid/Acti
 import { makeStyles } from '@material-ui/styles';
 import { colorLightSurface } from '../../style/colors';
 import Collapsible from '../Collapsible';
+import HtmlWidget from './Widget/HtmlWidget';
+import Widget from './Widget';
 
 const useStyles = makeStyles(theme => ({
     wrapper:{
@@ -46,10 +46,16 @@ export const Editor = ({
         id, type,
         title, titleurl,
         readmore, readmoreurl,
+        content,
         prolog, epilog
     } = box;
     const [_title, setTitle] = useState(title);
+    const [_titleurl, setTitleUrl] = useState(titleurl);
     const [_readmore, setReadmore] = useState(readmore);
+    const [_readmoreurl, setReadmoreUrl] = useState(readmoreurl);
+    const [_prolog, setProlog] = useState(prolog);
+    const [_content, setContent] = useState(content);
+    const [_epilog, setEpilog] = useState(epilog);
     const handleOnSave = ()=>{
         onSave({
             ...box,
@@ -58,16 +64,13 @@ export const Editor = ({
         });
     };
 
-    const config = {
-        toolbar: [ 'heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote' ],
-        heading: {
-            options: [
-                { model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph' },
-                { model: 'heading1', view: 'h1', title: 'Heading 1', class: 'ck-heading_heading1' },
-                { model: 'heading2', view: 'h2', title: 'Heading 2', class: 'ck-heading_heading2' }
-            ]
-        }
-    };
+    const handleContentChange = useCallback((key, value)=>{
+        setContent({
+            ..._content,
+            [key]: value,
+        });
+    }, []);
+
     return <div className={classes.wrapper}>
 
         <ActionsPanel className={classes.actions}>
@@ -94,49 +97,27 @@ export const Editor = ({
             </div>
             <div className={classes.section+" "+classes.contentSection}>
                 <Collapsible label={"Prolog"}>
-                    <CKEditor
-                        editor={ ClassicEditor }
-                        data={prolog}
-                        onInit={ editor => {
-                            // You can store the "editor" and use when it is needed.
-                            console.log( 'Editor is ready to use!', editor );
-                        } }
-                        onChange={ ( event, editor ) => {
-                            const data = editor.getData();
-                            console.log( { event, editor, data } );
-                        } }
-                        onBlur={ ( event, editor ) => {
-                            console.log( 'Blur.', editor );
-                        } }
-                        onFocus={ ( event, editor ) => {
-                            console.log( 'Focus.', editor );
-                        } }
-                        config={config}
+                    <HtmlWidget
+                        value={_prolog}
+                        onChange={setProlog}
                     />
                 </Collapsible>
                 <Collapsible label={"Box specific settings"}>
-                    <p>Generated content fields</p>
+                    {box.contentstructure.map((item, index)=>{
+                        return <Widget
+                            key={item.key || index}
+                            {...item}
+                            contentKey={item.key || index}
+                            value={_content[item.key]}
+                            onChange={handleContentChange}
+                        />
+                    })}
                 </Collapsible>
                 <Collapsible label={"Epilog"}>
-                    <CKEditor
-                        editor={ ClassicEditor }
-                        data={epilog}
-                        onInit={ editor => {
-                            // You can store the "editor" and use when it is needed.
-                            console.log( 'Editor is ready to use!', editor );
-                        } }
-                        onChange={ ( event, editor ) => {
-                            const data = editor.getData();
-                            console.log( { event, editor, data } );
-                        } }
-                        onBlur={ ( event, editor ) => {
-                            console.log( 'Blur.', editor );
-                        } }
-                        onFocus={ ( event, editor ) => {
-                            console.log( 'Focus.', editor );
-                        } }
-                        config={config}
-                    />
+                <HtmlWidget
+                    value={_epilog}
+                    onChange={setEpilog}
+                />
                 </Collapsible>
             </div>
             <div className={classes.section}>
